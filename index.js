@@ -7,7 +7,7 @@ require("dotenv").config();
 let { WEBHOOK_URL: URL } = process.env;
 
 if (!URL) {
-  console.error("You must include a URL in the .env file.");
+  console.error("You must include a WEBHOOK_URL in the .env file.");
   process.exit(1);
 }
 
@@ -15,9 +15,7 @@ const latestVersionEndpoint = 'https://itunes.apple.com/lookup?bundleId=com.moja
 
 getMCInformation();
 
-setInterval(() => {
-  getMCInformation();
-}, 21600000)
+setInterval(getMCInformation, 21600000);
 
 function getMCInformation() {
   axios.get(latestVersionEndpoint)
@@ -58,7 +56,7 @@ function getMCInformation() {
       });
 
       fs.writeFileSync('./protocol_versions.json', JSON.stringify(protocolVersions));
-      
+
       console.log("Updated Protocol Versions saved to protocol_versions.json");
     } else {
       console.log("No new protocol version found or already exists.");
