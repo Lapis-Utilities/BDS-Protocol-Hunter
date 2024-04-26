@@ -39,7 +39,7 @@ function getMCInformation() {
 
     if (!protocolVersions.some(existingVersion => existingVersion[0] === protocolVersion[0])) {
       protocolVersions.push(protocolVersion);
-      console.log("New Protocol Version added:", protocolVersion);
+      console.log("New Protocol Version added:", protocolVersion[0]);
 
       send({
         username: "BDS Protocol Hunter",
